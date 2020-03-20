@@ -2,7 +2,7 @@
 namespace App\Repositories;
 
 use App\Repositories\Interfaces\DepartmentRepositoryInterface;
-use App\Models\Departments;
+use App\Models\Department\Department;
 use App\Base\BaseRepository;
 
 class DepartmentRepository extends BaseRepository implements DepartmentRepositoryInterface
@@ -12,16 +12,16 @@ class DepartmentRepository extends BaseRepository implements DepartmentRepositor
 	public function __construct($model=null)
     {
     	if(is_null($model)) {
-			$model	= new Departments();
+			$model	= new Department();
 		} else if (is_array($model)) {
-			$model	= new Departments($model);
+			$model	= new Department($model);
 		}
 		$this->model = $model;
     }
 	
-	public function insert($data)
+	public function insert(array $data)
 	{
-		$department	= new Departments($data);
+		$department	= new Department($data);
 		$department->parent_id	= $data['parent_id'];
 		$department->save();
 		return $department;
@@ -34,6 +34,6 @@ class DepartmentRepository extends BaseRepository implements DepartmentRepositor
      */
 	public function all()
 	{
-		return Departments::all();
+		return Department::all();
 	}
 }

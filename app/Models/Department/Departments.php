@@ -1,10 +1,10 @@
 <?php
-namespace App\Models;
+namespace App\Models\Department;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Base\BaseModel;
 use Kalnoy\Nestedset\NodeTrait;
 
-class Departments extends Model
+class Department extends BaseModel
 {
 	use NodeTrait;
 	/**

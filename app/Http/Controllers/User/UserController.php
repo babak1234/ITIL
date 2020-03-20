@@ -1,23 +1,23 @@
 <?php
-namespace App\Http\Controllers\Departments;
+namespace App\Http\Controllers\User;
 
 use Exception;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Controllers\ControllerAbstract;
-use App\Repositories\Interfaces\DepartmentRepositoryInterface;
-use App\Http\Requests\Departments\CreateDepartmentRequest;
-use App\Http\Requests\Departments\UpdateDepartmentRequest;
+use App\Repositories\Interfaces\UserRepositoryInterface;
+use App\Http\Requests\User\CreateUserRequest;
+use App\Http\Requests\Department\UpdateDepartmentRequest;
 
 
 
-class DepartmentController extends ControllerAbstract
+class UserController extends ControllerAbstract
 {
     /**
-     * DepartmentController constructor.
+     * UserController constructor.
      *
-     * @param DepartmentRepositoryInterface $model
+     * @param UserRepositoryInterface $model
      */
-    public function __construct(DepartmentRepositoryInterface $model)
+    public function __construct(UserRepositoryInterface $model)
     {
         $this->model = $model;
     }
@@ -49,25 +49,23 @@ class DepartmentController extends ControllerAbstract
     }
 
 	/**
-	 * Store new department
+	 * Store new user
 	 * @param CreateDepartmentRequest $request
 	 * @return \Illuminate\Http\Response
 	 */
-	public function store(CreateDepartmentRequest $request)
+	public function store(CreateUserRequest $request)
 	{
-		try {
-			$data	= $request->validated();
+//		try {
 			// @TODO CHANGE TO LOGED IN USER
-			$data['user_id']	= 1;
-			$department			= $this->model->insert($data);
+			$user	= $this->model->insert($request->validated());
 			return $this->getResponse([
-				'department_id'	=> $department->department_id
+				'id'	=> $user->id
 			], Response::HTTP_CREATED);
-		} catch (Exception $ex) {
-			return $this->getResponse([
-				self::EXCEPTION_MESSAGE => $ex->getMessage()
-			], Response::HTTP_INTERNAL_SERVER_ERROR);
-		}
+//		} catch (Exception $ex) {
+//			return $this->getResponse([
+//				self::EXCEPTION_MESSAGE => $ex->getMessage()
+//			], Response::HTTP_INTERNAL_SERVER_ERROR);
+//		}
 	}
 
 	/**

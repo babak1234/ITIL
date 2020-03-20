@@ -18,7 +18,7 @@ abstract class ControllerAbstract extends Controller
 	 */
 	protected function getResponse($content, $statusCode=Response::HTTP_OK, $heathers=[])
 	{
-		if(isset($content[self::EXCEPTION_MESSAGE]) && !in_array(env('APP_ENV'), ['local', 'development'])) {
+		if(isset($content[self::EXCEPTION_MESSAGE]) && !in_array(env('APP_ENV'), ['local', 'development', 'testing%'])) {
 			unset($content[self::EXCEPTION_MESSAGE]);
 		}
 		return response(['data' => $content], $statusCode, $heathers);

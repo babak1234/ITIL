@@ -1,7 +1,7 @@
 <?php
 namespace App\Repositories\Interfaces;
 
-interface DepartmentRepositoryInterface
+interface UserRepositoryInterface
 {
 	public function insert(array $data);
 	/**

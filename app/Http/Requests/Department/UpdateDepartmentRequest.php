@@ -1,9 +1,9 @@
 <?php
-namespace App\Http\Requests\Departments;
+namespace App\Http\Requests\Department;
 
 use App\Base\BaseRequest;
 
-class CreateDepartmentRequest extends BaseRequest
+class UpdateDepartmentRequest extends BaseRequest
 {
 	/**
 	 * Get the validation rules that apply to the request.
@@ -14,9 +14,8 @@ class CreateDepartmentRequest extends BaseRequest
 	{
 		// TODO : acl validattion for parent department id
 		return [
-			'name'		    => 'required|max:255',
+			'name'  		=> 'required|max:255',
 			'description'	=> 'string',
-			'parent_id' 	=> 'required|int'
 		];
 	}
 }

@@ -14,6 +14,12 @@ abstract class BaseRepository
     {
         return call_user_func_array([$this->model, $method], $args);
     }
+
+	public function insert(array $data)
+	{
+		$this->model->insert($data);
+		return $this->model;
+	}
 	
 	/**
      * Get`s all entities.
